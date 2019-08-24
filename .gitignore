@@ -1,2 +1,5 @@
 # Vim FIles
 *.swp
+
+#Java class files 
+target
