@@ -35,13 +35,23 @@ import java.util.function.UnaryOperator;
  * 
  */
 public class SinglyLinkedList<T> implements List<T> {
+    private Node head;
     public SinglyLinkedList() {
-        System.out.println("hi");
+        head = new EmptyNode();
+        
     }
 
     @Override
     public boolean add(T t) {
-        return true;
+        if (head.isEmpty()) {
+            Node nextNode = new EmptyNode();
+            head = new FullNode(t, nextNode);
+        } else {
+            Node 
+            while (
+            //iterate through nodes until you find empty node.
+            //then add new node.
+        }
     }
 
     @Override
@@ -186,6 +196,54 @@ public class SinglyLinkedList<T> implements List<T> {
     @Override
     public <T> T[] toArray(T[] a) {
         return a;
+    }
+
+    //inner class for node/element used in SinglyLinkedList
+    private class FullNode implements SinglyNode {
+        private T value;
+        private Node nextNode;
+
+        public Node(T value, Node nextNode) {
+            this.value = value;
+            this.nextNode = nextNode;
+        }
+
+        public setNextNode(SinglyNode node) {
+            this.nextNode = node;
+        }
+
+        public SinglyNode getNextNode() {
+            return this.nextNode;
+        }
+        
+        public T getValue() {
+            return this.value;
+        }
+
+        public boolean isEmpty() {
+            return false;
+        }
+
+    }
+
+    private class EmptyNode implements SinglyNode {
+
+        public setNextNode(SinglyNode node) {
+
+        }
+
+        public Node getNextNode() {
+            return null;
+        }
+        
+        public T getValue() {
+            return null;
+        }
+
+        public boolean isEmpty() {
+            return true;
+        }
+
     }
 
 }
