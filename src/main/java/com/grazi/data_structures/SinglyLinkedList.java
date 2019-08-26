@@ -35,7 +35,8 @@ import java.util.function.UnaryOperator;
  * 
  */
 public class SinglyLinkedList<T> implements List<T> {
-    private Node head;
+    private SinglyNode head;
+    private int size;
     public SinglyLinkedList() {
         head = new EmptyNode();
         
@@ -44,14 +45,30 @@ public class SinglyLinkedList<T> implements List<T> {
     @Override
     public boolean add(T t) {
         if (head.isEmpty()) {
-            Node nextNode = new EmptyNode();
+            SinglyNode nextNode = new EmptyNode();
             head = new FullNode(t, nextNode);
         } else {
-            Node 
-            while (
-            //iterate through nodes until you find empty node.
-            //then add new node.
+            SinglyNode emptyNode = new EmptyNode();
+            SinglyNode nextNode = new FullNode(t, emptyNode);
+
+            SinglyNode lastNode = findLastNode();
+            lastNode.setNextNode(nextNode);
         }
+        ++this.size;
+        return true;
+    }
+
+    private SinglyNode findLastNode() {
+        SinglyNode currentNode = head;
+        SinglyNode nextNode = currentNode.getNextNode();
+        while (!nextNode.isEmpty()) {
+            currentNode = nextNode;
+            nextNode = currentNode.getNextNode();
+        }
+        return currentNode;
+    }
+
+    private T getValueOfNodeWithIndex(int index) {
     }
 
     @Override
@@ -168,7 +185,7 @@ public class SinglyLinkedList<T> implements List<T> {
 
     @Override
     public int size() {
-        return 0;
+        return this.size;
     }
 
     @Override
@@ -201,14 +218,14 @@ public class SinglyLinkedList<T> implements List<T> {
     //inner class for node/element used in SinglyLinkedList
     private class FullNode implements SinglyNode {
         private T value;
-        private Node nextNode;
+        private SinglyNode nextNode;
 
-        public Node(T value, Node nextNode) {
+        public FullNode(T value, SinglyNode nextNode) {
             this.value = value;
             this.nextNode = nextNode;
         }
 
-        public setNextNode(SinglyNode node) {
+        public void setNextNode(SinglyNode node) {
             this.nextNode = node;
         }
 
@@ -228,11 +245,11 @@ public class SinglyLinkedList<T> implements List<T> {
 
     private class EmptyNode implements SinglyNode {
 
-        public setNextNode(SinglyNode node) {
+        public void setNextNode(SinglyNode node) {
 
         }
 
-        public Node getNextNode() {
+        public SinglyNode getNextNode() {
             return null;
         }
         

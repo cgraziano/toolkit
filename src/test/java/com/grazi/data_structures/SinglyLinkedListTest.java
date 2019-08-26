@@ -144,7 +144,19 @@ public class SinglyLinkedListTest {
 
     @Test
     public void testSize() {
-        assertTrue(false);
+        Integer number1 = new Integer(4);
+        list.add(number1);
+
+        int actualSize = list.size();
+        int expectedSize = 1;
+        assertEquals(expectedSize, actualSize);
+
+        number1 = new Integer(5);
+        list.add(number1);
+        actualSize = list.size();
+        expectedSize = 2;
+
+        assertEquals(expectedSize, actualSize);
     }
 
     @Test
