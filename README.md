@@ -8,7 +8,7 @@ Used for exploring new ideas as well as reusing them in other projects.
 ### Complie test 
 'mvn test-compile'
 
-###Run single test
+### Run single test
 mvn test -Dtest=SinglyLinkedListTest#testAddWithEmptyAndNonEmptyList
 
 
