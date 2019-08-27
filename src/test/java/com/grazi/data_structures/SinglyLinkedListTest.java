@@ -21,25 +21,44 @@ public class SinglyLinkedListTest {
 
     @Test
     public void testAddWithEmptyAndNonEmptyList() {
-        Integer number1 = new Integer(4);
-        list.add(number1);
+        checkSize(0, list);
+        Integer number0 = 4;
+        list.add(number0);
 
+        Integer actualValue = list.get(0);
+        Integer expectedValue = number0;
+        assertEquals(expectedValue, actualValue);
+        checkSize(1, list);
+
+        Integer number1 = 5;
+        list.add(number1);
+        actualValue = list.get(1);
+        expectedValue = number1;
+        assertEquals(expectedValue, actualValue);
+        checkSize(2, list);
+
+    }
+
+    private void checkSize(int expectedSize, List list) {
         int actualSize = list.size();
-        int expectedSize = 1;
         assertEquals(expectedSize, actualSize);
-
-        number1 = new Integer(5);
-        list.add(number1);
-        actualSize = list.size();
-        expectedSize = 2;
-
-        assertEquals(expectedSize, actualSize);
-        
     }
 
     @Test
     public void testAddIndex() {
-        assertTrue(false);
+        Integer number0 = 4;
+        list.add(number0);
+
+        Integer actualValue = list.get(0);
+        Integer expectedValue = number0;
+        assertEquals(expectedValue, actualValue);
+
+        Integer number1 = 5;
+        list.add(number1);
+        actualValue = list.get(1);
+        expectedValue = number1;
+
+        assertEquals(expectedValue, actualValue);
     }
 
     @Test
@@ -74,7 +93,19 @@ public class SinglyLinkedListTest {
 
     @Test
     public void testGet() {
-        assertTrue(false);
+        Integer number0 = 4;
+        list.add(number0);
+
+        Integer number1 = 5;
+        list.add(number1);
+
+        Integer expectedValue = list.get(0);
+        Integer actualValue = number0;
+        assertEquals(expectedValue, actualValue);
+
+        expectedValue = list.get(1);
+        actualValue = number1;
+        assertEquals(expectedValue, actualValue);
     }
 
     @Test

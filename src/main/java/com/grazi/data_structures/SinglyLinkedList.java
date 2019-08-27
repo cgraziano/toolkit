@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.Spliterator;
 import java.util.function.UnaryOperator;
+import java.lang.IndexOutOfBoundsException;
 
 /**
  * A linked list is a linear data structure 
@@ -68,9 +69,6 @@ public class SinglyLinkedList<T> implements List<T> {
         return currentNode;
     }
 
-    private T getValueOfNodeWithIndex(int index) {
-    }
-
     @Override
     public void add(int index, T t) {
         System.out.println("hi");
@@ -108,8 +106,32 @@ public class SinglyLinkedList<T> implements List<T> {
 
     @Override
     public T get(int index) {
-        T empty = null;
-        return empty;
+        SinglyNode<T> node = this.getNode(index);
+        return node.getValue();
+    }
+
+    private SinglyNode getNode(int index) {
+        SinglyNode retrievedNode = new EmptyNode();
+        if (index < 0 || this.size() <= index) {
+            StringBuilder message = new StringBuilder("Index (");
+            message.append(index);
+            message.append(") is less than 0");
+            message.append("or greater than the size of this LinkedList (");
+            message.append(this.size());
+            message.append(")");
+            throw new IndexOutOfBoundsException(message.toString());
+        } else {
+            int count = 0;
+            SinglyNode currentNode = head;
+            SinglyNode nextNode = currentNode.getNextNode();
+            while (count < index) {
+                currentNode = nextNode;
+                nextNode = currentNode.getNextNode();
+                ++count;
+            }
+            retrievedNode = currentNode;
+        }
+        return retrievedNode;
     }
 
     @Override
